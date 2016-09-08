@@ -119,6 +119,9 @@ class ConnectController extends Controller
                 $form = $this->container->get('hwi_oauth.registration.form');
             }
         } else {
+            if (!$this->container->hasDefinition('hwi_oauth.registration.form')) {
+                throw new RuntimeException('You must create service "hwi_oauth.registration.form" to be able to use "connect" functionality.');
+            }
             $form = $this->container->get('hwi_oauth.registration.form');
         }
 
